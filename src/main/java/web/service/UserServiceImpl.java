@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService {
         return userDao.findAll();
     }
 
+    @Transactional
     @Override
     public User fineOne(int id) {
         return userDao.fineOne(id);
@@ -31,11 +32,13 @@ public class UserServiceImpl implements UserService {
         userDao.save(user);
     }
 
+    @Transactional
     @Override
     public void update(int id, User updatedUser) {
         userDao.update(id, updatedUser);
     }
 
+    @Transactional
     @Override
     public void delete(int id) {
         userDao.delete(id);

@@ -58,6 +58,7 @@ public class AppConfig {
       em.setJpaVendorAdapter(vendorAdapter);
       em.setJpaProperties(hibernateProperties());
 
+
       return em;
    }
 
