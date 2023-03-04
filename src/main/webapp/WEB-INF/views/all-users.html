@@ -14,11 +14,16 @@
         <td th:text="${user.getName()}">User name:</td>
     </tr>
 </table>
-<form action="new-user.html">
-
+<form action="/users/new" method="GET">
     <input type="submit" value="Add user"/>
-
 </form>
-
+</br>
+<form action="/{id}/update" method="GET">
+    <input type="submit" value="Update user"/>
+</form>
+</br>
+<form action="/users/delete" method="GET">
+    <input type="submit" value="Delete user"/>
+</form>
 </body>
 </html>

@@ -19,11 +19,6 @@ public class UsersController {
 
     @GetMapping("/table")
     public String tableOfUsers(Model model) {
-        User user = new User();
-        user.setId(4);
-        user.setName("joe");
-        user.setAge(4);
-        userService.save(user);
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
         return "all-users";
@@ -38,7 +33,7 @@ public class UsersController {
     @PostMapping()
     public String addUser(@ModelAttribute("user") User user) {
         userService.save(user);
-        return "redirect:/all-users";
+        return "redirect:/users/table";
     }
 
     @GetMapping("/{id}/update")
@@ -50,15 +45,19 @@ public class UsersController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
         userService.update(id, user);
-        return "all-users";
+        return "redirect:/users/table";
     }
 
-
-
-    @DeleteMapping("/{id}")
-    public String removeUser(@RequestParam(name = "id") int id, Model model) {
-        userService.delete(id);
-
+    @GetMapping("/{id}/delete")
+    public String removeUser(Model model, @PathVariable("id") int id) {
+        model.addAttribute("user", userService.fineOne(id));
         return "remove-user";
     }
+
+    @DeleteMapping({"/{id}"})
+    public String delete(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+        userService.delete(id);
+        return "redirect:/users/table";
+    }
+
 }
