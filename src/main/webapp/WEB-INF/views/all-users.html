@@ -8,22 +8,13 @@
 </head>
 <body>
 <table>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.getId()}">User ID:</td>
-        <td th:text="${user.getAge()}">User age:</td>
-        <td th:text="${user.getName()}">User name:</td>
-    </tr>
+    <div th:each="user : ${users}">
+        <a th:href="@{/users/{id}(id=${user.getId()})}"
+           th:text="${user.getName() + ', ' + user.getAge()}">user</a>
+    </div>
 </table>
 <form action="/users/new" method="GET">
     <input type="submit" value="Add user"/>
-</form>
-</br>
-<form action="/{id}/update" method="GET">
-    <input type="submit" value="Update user"/>
-</form>
-</br>
-<form action="/users/delete" method="GET">
-    <input type="submit" value="Delete user"/>
 </form>
 </body>
 </html>
